@@ -6,9 +6,9 @@ const {
 } = require('../controllers/movies')
 
 
-// @route       GET api/movies
+// @route       POST api/movies
 // @desc        GET ALL Movies with Max Profit
 // @access      Public
-router.get('/', listMovies)
+router.post('/', listMovies)
 
 module.exports = router;
