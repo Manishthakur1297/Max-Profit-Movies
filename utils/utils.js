@@ -38,10 +38,11 @@ const maxProfitMovies = (sorted_movie) => {
                 start1 = start2;
                 end1 = end2;
             }
-            if (mx < c) {
-                mx = c;
-                final_movies_list = temp_movies;
-            }
+        }
+
+        if (mx < c) {
+            mx = c;
+            final_movies_list = temp_movies;
         }
     }
 
