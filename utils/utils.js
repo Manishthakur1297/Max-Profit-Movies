@@ -20,34 +20,18 @@ const maxProfitMovies = (sorted_movie) => {
         }
     });
 
-    let final_movies_list = []
-    let mx = 0;
-    for (i = sorted_movie.length - 1; i > -1; i--) {
+    let final_movies_list = [sorted_movie[sorted_movie.length - 1]]
+    let start1 = moment(sorted_movie[sorted_movie.length - 1]["Start Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
+    for (i = sorted_movie.length - 2; i > -1; i--) {
         let movie = sorted_movie[i];
-        let temp_movies = [];
-        temp_movies.push(movie);
-        let c = 1;
-        let start1 = moment(movie["Start Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
-        let end1 = moment(movie["End Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
-        for (j = i - 1; j > -1; j--) {
-            start2 = moment(sorted_movie[j]["Start Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
-            end2 = moment(sorted_movie[j]["End Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
-            if (end2 < start1) {
-                temp_movies.unshift(sorted_movie[j]);
-                c += 1;
-                start1 = start2;
-                end1 = end2;
-            }
-        }
-
-        if (mx < c) {
-            mx = c;
-            final_movies_list = temp_movies;
+        start2 = moment(sorted_movie[i]["Start Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
+        end2 = moment(sorted_movie[i]["End Date"], "D MMM").format("YYYY-MM-DD[T]HH:mm:ss")
+        if (end2 < start1) {
+            final_movies_list.unshift(movie);
+            start1 = start2;
         }
     }
-
     return final_movies_list;
-
 }
 
 module.exports = maxProfitMovies;
